@@ -5,8 +5,15 @@ tiann/KernelSU pr#2307 and mmrl latest will do 30 fps
 
 magisk will do 10 fps on this
 
-[Download](https://raw.githubusercontent.com/backslashxx/bad-apple-ascii/refs/heads/magisk-module/bad_apple.zip)
+Download the module from the Releases section.
 
 ascii frames generated via 
 
 https://github.com/trung-kieen/bad-apple-ascii
+
+## 📜 License
+
+This project is licensed under the [Anti-996 License](https://github.com/996icu/996.ICU/blob/master/LICENSE),  
+a license designed to protect developers from exploitative work conditions like the 996 work schedule.
+
+> This means: Use of this software must comply with local labor laws.
