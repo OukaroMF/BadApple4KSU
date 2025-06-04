@@ -99,5 +99,60 @@ function calcFontSize() {
 // Initial load
 document.addEventListener('DOMContentLoaded', () => {
     calcFontSize();
-    startBadApple();
+    startBadApple && startBadApple();
+
+    const video = document.getElementById('video');
+    if (video) {
+        // 只有用户点击播放按钮时才启动 ASCII 动画
+        video.addEventListener('play', () => {
+            if (currentFrame === 1) play();
+        });
+    }
+});
+
+const totalFrames = 6584;
+const videoDuration = 219; // 秒
+
+/**
+ * 计算当前时间对应的帧号
+ * @param {number} currentTime 视频当前时间（秒）
+ * @returns {number} 帧号（1-based）
+ */
+function getFrameNumber(currentTime) {
+    let frame = Math.floor((currentTime / videoDuration) * totalFrames) + 1;
+    if (frame < 1) frame = 1;
+    if (frame > totalFrames) frame = totalFrames;
+    return frame;
+}
+
+let lastFrame = -1;
+
+async function loadFrame(frameNum) {
+    if (frameNum === lastFrame) return; // 避免重复加载
+    lastFrame = frameNum;
+    const filename = `assets/out${String(frameNum).padStart(4, '0')}.jpg.txt`;
+    try {
+        const res = await fetch(filename);
+        if (res.ok) {
+            const text = await res.text();
+            document.getElementById('ascii-frame').textContent = text;
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    calcFontSize && calcFontSize();
+    startBadApple && startBadApple();
+
+    const video = document.getElementById('video');
+    if (video) {
+        video.addEventListener('timeupdate', () => {
+            const frameNum = getFrameNumber(video.currentTime);
+            loadFrame(frameNum);
+        });
+        // 初始化时显示第一帧
+        loadFrame(1);
+    }
 });

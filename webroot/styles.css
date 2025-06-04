@@ -24,16 +24,15 @@
 }
 
 body {
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    padding-top: var(--top-inset);
-    padding-bottom: var(--bottom-inset);
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
 }
 
 .output {
@@ -46,4 +45,15 @@ body {
 .output code {
     margin: 0;
     font-size: var(--code-font-size, 1em);
+}
+
+#ascii-frame {
+  white-space: pre;
+  font-size: 10px;
+  max-height: 60vh;
+  overflow: hidden;
+}
+
+video {
+  margin-top: 10px;
 }
